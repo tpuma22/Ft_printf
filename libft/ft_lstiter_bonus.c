@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpuma <tpuma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 16:03:02 by tpuma             #+#    #+#             */
-/*   Updated: 2022/07/02 22:31:24 by tpuma            ###   ########.fr       */
+/*   Created: 2022/05/20 19:40:06 by tpuma             #+#    #+#             */
+/*   Updated: 2022/05/20 19:41:15 by tpuma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include "libft/libft.h"
-
-
-int	ft_printf(char const *str, ...);
-/* int	ft_parameter_format(va_list args, char type); */
-/* int	ft_parameter_format(char format); */
-/* double	suma(int n, ...); */
-
-#endif
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	while (lst != NULL)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
+}

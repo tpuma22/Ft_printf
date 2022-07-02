@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpuma <tpuma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 16:03:02 by tpuma             #+#    #+#             */
-/*   Updated: 2022/07/02 22:31:24 by tpuma            ###   ########.fr       */
+/*   Created: 2022/05/20 19:35:41 by tpuma             #+#    #+#             */
+/*   Updated: 2022/05/20 19:36:40 by tpuma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include "libft/libft.h"
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*aux;
 
-
-int	ft_printf(char const *str, ...);
-/* int	ft_parameter_format(va_list args, char type); */
-/* int	ft_parameter_format(char format); */
-/* double	suma(int n, ...); */
-
-#endif
+	while (*lst != NULL)
+	{
+		aux = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = aux;
+	}
+}

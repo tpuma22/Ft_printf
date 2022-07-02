@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpuma <tpuma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 16:03:02 by tpuma             #+#    #+#             */
-/*   Updated: 2022/07/02 22:31:24 by tpuma            ###   ########.fr       */
+/*   Created: 2022/04/02 12:46:00 by tpuma             #+#    #+#             */
+/*   Updated: 2022/04/03 16:15:23 by tpuma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include "libft/libft.h"
+int	ft_tolower(int c)
+{
+	if (c >= 65 && c <= 90)
+	{
+		c = c + 32;
+		return (c);
+	}
+	else
+		return (c);
+}
 
+/* int	main(void)
+{
+	int	a;
 
-int	ft_printf(char const *str, ...);
-/* int	ft_parameter_format(va_list args, char type); */
-/* int	ft_parameter_format(char format); */
-/* double	suma(int n, ...); */
-
-#endif
+	a = 65;
+	printf("variable: %c\n", a);
+	printf("Mi función: %d - %c\n", ft_tolower(a), ft_tolower(a));
+	printf("La original: %d - %c\n", tolower(a), tolower(a));
+	return (0);
+} */

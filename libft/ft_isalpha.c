@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpuma <tpuma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 16:03:02 by tpuma             #+#    #+#             */
-/*   Updated: 2022/07/02 22:31:24 by tpuma            ###   ########.fr       */
+/*   Created: 2022/03/28 12:33:18 by tpuma             #+#    #+#             */
+/*   Updated: 2022/04/03 16:25:16 by tpuma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include "libft/libft.h"
+int	ft_isalpha(int c)
+{
+	if ((c < 65 || c > 90) && (c < 97 || c > 122))
+	{
+		return (0);
+	}
+	else
+		return (1);
+}
 
+/* int	main(void)
+{
+	int	resultado;
+	int	a;
 
-int	ft_printf(char const *str, ...);
-/* int	ft_parameter_format(va_list args, char type); */
-/* int	ft_parameter_format(char format); */
-/* double	suma(int n, ...); */
-
-#endif
+	a = 65;
+	resultado = ft_isalpha(a);
+	printf("%d", resultado);
+	return (0);
+} */

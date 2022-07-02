@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpuma <tpuma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 16:03:02 by tpuma             #+#    #+#             */
-/*   Updated: 2022/07/02 22:31:24 by tpuma            ###   ########.fr       */
+/*   Created: 2022/05/20 19:26:01 by tpuma             #+#    #+#             */
+/*   Updated: 2022/05/20 19:29:17 by tpuma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include "libft/libft.h"
+t_list	*ft_lstlast(t_list *lst)
+{
+	int	size;
 
-
-int	ft_printf(char const *str, ...);
-/* int	ft_parameter_format(va_list args, char type); */
-/* int	ft_parameter_format(char format); */
-/* double	suma(int n, ...); */
-
-#endif
+	size = 0;
+	while (lst)
+	{
+		if (lst->next == NULL)
+			return (lst);
+		lst = lst->next;
+	}
+	return (lst);
+}

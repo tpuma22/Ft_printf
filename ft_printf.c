@@ -6,40 +6,62 @@
 /*   By: tpuma <tpuma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:07:17 by tpuma             #+#    #+#             */
-/*   Updated: 2022/07/02 13:53:34 by tpuma            ###   ########.fr       */
+/*   Updated: 2022/07/02 22:48:53 by tpuma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<stdio.h>
-#include<stdarg.h>
+#include "ft_printf.h"
 
-double	suma(int n, ...)
+int	ft_filter_format(va_list ap, char c)
 {
-	va_list	parametros;
-	double	s;
-	double	valor;
-	int		i;
+	int	count;
 
-	va_start(parametros, n);
-	i = 0;
-	s = 0.0;
-	while (i < n)
-	{
-		valor = va_arg(parametros, double);
-		s += valor;
-		i++;
-	}
-	va_end(parametros);
-	return (s);
+	count = 0;
+	if (c == 'c')
+		count += ft_putchar(va_arg(ap, int));
+	else if (c == '%')
+		count += ft_putchar('%');
+	return (count);
 }
 
-/* double	suma(int n, ...);
-
-int	main(void)
+int	ft_printf(char const *str, ...)
 {
-	double	a;
+	va_list	param;
+	int		count;
 
-	a = suma (5, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f);
-	printf("%lf\n", a);
+	count = 0;
+	va_start(param, str);
+	while (*str != '\0')
+	{
+		if (*str == '%')
+		{
+ 			count += ft_filter_format(param, *++str);
+		}
+		else
+		{
+			count += ft_putchar(*str);
+		}
+		str++;
+	}
+	va_end(param);
+	return (count);
+}
+
+/* int	main(void)
+{
+	char	*texto;
+	int		a;
+	int		b;
+	int		x;
+
+	printf("Esta es la original: %%\n");
+	ft_printf("Esta es mi función: %%\n");
+	texto = "inicio %c %s %d final";
+	x = 48;
+	a = ft_printf(texto, x, "hola95", 453);
+	write(1, "\n", 1);
+	b = printf(texto, x, "hola", 453);
+	printf("\nft_printf: %d\nprintf: %d", a, b);
+
 	return (0);
 } */
