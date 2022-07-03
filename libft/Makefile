@@ -6,7 +6,7 @@
 #    By: tpuma <tpuma@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/02 21:23:17 by tpuma             #+#    #+#              #
-#    Updated: 2022/07/02 21:20:41 by tpuma            ###   ########.fr        #
+#    Updated: 2022/07/03 11:43:02 by tpuma            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,6 @@ SRC =	ft_isalpha.c		\
 		ft_strmapi.c		\
 		ft_striteri.c		\
 		ft_putchar_fd.c		\
-		ft_putchar.c		\
 		ft_putstr_fd.c		\
 		ft_putendl_fd.c		\
 		ft_putnbr_fd.c		\
