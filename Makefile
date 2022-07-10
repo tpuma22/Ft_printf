@@ -6,7 +6,7 @@
 #    By: tpuma <tpuma@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 15:13:37 by tpuma             #+#    #+#              #
-#    Updated: 2022/07/03 18:36:35 by tpuma            ###   ########.fr        #
+#    Updated: 2022/07/09 21:49:21 by tpuma            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,9 +17,9 @@ NAME = libftprintf.a
 LIBFT = libft/
 NAME_LIBFT = libft.a
 
-SRCS =	ft_printf.c		\
-		ft_putchar.c		\
-		#ft_pruebas.c
+SRCS =	ft_printf.c				\
+		ft_putnbr_unsigned.c	\
+		ft_putchar.c			\
 
 INCLUDES = ft_printf.h
 #Cuando quiero utilizar Libft sin volver a compilar todo, entinces uso --> LIB 	= -L ${PWD}/PATH -lft
@@ -50,6 +50,7 @@ $(NAME) : $(OBJS)
 	@echo "$(CYAN)Succesfully creating library of libftprintf.a $(RESET)"
 
 # ========== FUNCTIONS ==========
+
 
 all: $(NAME)
 #To compile with main.c with 'gcc and to generate a.out' it must be activated => "Make out"

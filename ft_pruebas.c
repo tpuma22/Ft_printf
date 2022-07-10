@@ -6,13 +6,13 @@
 /*   By: tpuma <tpuma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:07:17 by tpuma             #+#    #+#             */
-/*   Updated: 2022/07/03 16:07:58 by tpuma            ###   ########.fr       */
+/*   Updated: 2022/07/10 11:30:52 by tpuma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar(char c)
+/* int	ft_putchar(char c)
 {
 	return (write(1, &c, 1));
 }
@@ -46,7 +46,9 @@ size_t	ft_strlen(const char *s)
 	while (s[i] != '\0')
 		i++;
 	return (i);
-}
+} */
+
+
 
 int	main(void)
 {
@@ -87,3 +89,44 @@ int	main(void)
 		}
 		i++;
 	} */
+
+
+/* ---------------
+
+int	ft_printf(char const *str, ...)
+{
+	va_list	param;
+	int		numb;
+	int		i;
+
+	i = 0;
+	numb = 0;
+	va_start(param, str);
+	while (str[i])
+	{
+		if (str[i] == '%')
+		{
+ 			numb += ft_filter_format(param, (str[i + 1]));
+			i += 2;
+		}
+		else
+		{
+			numb += write(1, &str[i], 1);
+			i++;
+		}
+	}
+	va_end(param);
+	return (numb);
+}
+
+-------------- */
+
+
+/* 	texto = "inicio %format %s %d final";
+	x = 48;
+	a = ft_printf(texto, x, "hola95", 453);
+	write(1, "\n", 1);
+	b = printf(texto, x, "hola", 453);
+	printf("\nft_printf: %d\nprintf: %d", a, b); */
+
+

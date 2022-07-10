@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr_unsigned.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpuma <tpuma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 16:03:02 by tpuma             #+#    #+#             */
-/*   Updated: 2022/07/10 11:28:40 by tpuma            ###   ########.fr       */
+/*   Created: 2022/07/09 16:03:23 by tpuma             #+#    #+#             */
+/*   Updated: 2022/07/09 21:42:02 by tpuma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <limits.h>
-# include "libft/libft.h"
+int	ft_putnbr_unsigned(long int n)
+{
+	int	counter;
 
-int	ft_printf(char const *str, ...);
-int	ft_filter_format(va_list param, char format);
-int	ft_putnbr_unsigned(long int n);
-int	ft_putchar(char c);
-int	ft_put_unsignbr_base(unsigned long int unsignbr, char *base);
+	counter = 0;
+	if (n < 0 || n > UINT_MAX)
+		return (0);
+	if (n > 9)
+	{
+		counter += ft_putnbr_unsigned(n / 10);
+		counter += ft_putchar(n % 10 + '0');
+	}
+	else
+		counter += ft_putchar(n + '0');
+	return (counter);
+}
 
-#endif
+/* int	main(void)
+{
+	long int b;
+
+	b = 13;
+	printf("\ncounter: %d\n", ft_putnbr_unsigned(b));
+	return (0);
+}
+ */
