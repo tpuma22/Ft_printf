@@ -6,7 +6,7 @@
 #    By: tpuma <tpuma@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 15:13:37 by tpuma             #+#    #+#              #
-#    Updated: 2022/07/09 21:49:21 by tpuma            ###   ########.fr        #
+#    Updated: 2022/07/31 12:29:42 by tpuma            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,18 +14,20 @@
 
 
 NAME = libftprintf.a
-LIBFT = libft/
+LIBFT = libft
 NAME_LIBFT = libft.a
 
-SRCS =	ft_printf.c				\
-		ft_putnbr_unsigned.c	\
-		ft_putchar.c			\
+SRCS =	ft_printf.c					\
+		ft_put_unsigned_nbr_base.c	\
+		ft_putchar.c				\
+		ft_print_number.c			\
+		ft_print_str.c				\
 
 INCLUDES = ft_printf.h
 #Cuando quiero utilizar Libft sin volver a compilar todo, entinces uso --> LIB 	= -L ${PWD}/PATH -lft
 OBJS = $(SRCS:.c=.o)
 CC = gcc
-AR = ar rc
+AR = ar csr
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 # Colours code
@@ -46,7 +48,9 @@ RESET = "\\x1b[37m"
 $(NAME) : $(OBJS)
 #To compile my sub-directory LIBFT
 	make -C $(LIBFT)
-	$(AR) $@ $^
+	cp libft/libft.a .
+	mv libft.a $(NAME)
+	$(AR) $(NAME) $(OBJS)
 	@echo "$(CYAN)Succesfully creating library of libftprintf.a $(RESET)"
 
 # ========== FUNCTIONS ==========
@@ -55,7 +59,7 @@ $(NAME) : $(OBJS)
 all: $(NAME)
 #To compile with main.c with 'gcc and to generate a.out' it must be activated => "Make out"
 out: re
-	$(CC) $(CFLAGS) ft_printf.c libftprintf.a $(LIBFT)libft.a
+	$(CC) $(CFLAGS) ft_printf.c libftprintf.a $(LIBFT)/libft.a
 	./a.out
 
 clean:
@@ -64,6 +68,7 @@ clean:
 
 fclean:	clean
 	@$(RM) $(NAME)
+	@$(RM) libft.a
 	@echo "$(GREEN)forced cleaning libftprintf.a finished$(RESET)"
 	make fclean -C $(LIBFT)
 

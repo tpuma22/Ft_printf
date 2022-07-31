@@ -6,7 +6,7 @@
 /*   By: tpuma <tpuma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 21:34:34 by tpuma             #+#    #+#             */
-/*   Updated: 2022/07/10 11:28:43 by tpuma            ###   ########.fr       */
+/*   Updated: 2022/07/31 12:32:06 by tpuma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,28 @@
 
 int	ft_filter_format(va_list param, char format)
 {
-	int			count;
-	size_t		number;
-	char		*chain;
-	char		*chain_nb;
-
-	count = 0;
 	if (format == 'c')
-		ft_putchar_fd((va_arg(param, int)), 1);
-	else if (format == '%')
-		count += ft_putchar('%');
+		return (ft_putchar(va_arg(param, int)));
 	else if (format == 's')
-	{
-		chain = va_arg(param, char *);
-		count += ft_strlen(chain);
-		ft_putstr_fd(chain, 1);
-	}
+		return (ft_print_str(va_arg(param, char *)));
+	else if (format == 'p')
+		return (write(1, "0x", 2)
+			+ ft_put_unsigned_nbr_base(va_arg(param, unsigned long int),
+				"0123456789abcdef"));
 	else if (format == 'd' || format == 'i')
-	{
-		number = va_arg(param, int);
-		ft_putnbr_fd(number, 1);
-		chain_nb = ft_itoa(number);
-		count += ft_strlen(chain_nb);
-	}
+		return (ft_print_number(va_arg(param, int)));
 	else if (format == 'u')
-		count += ft_putnbr_unsigned(va_arg(param, long int));
-	return (count);
+		return (ft_put_unsigned_nbr_base(va_arg(param, unsigned int),
+				"0123456789"));
+	else if (format == 'x')
+		return (ft_put_unsigned_nbr_base(va_arg(param, unsigned long int),
+				"0123456789abcdef"));
+	else if (format == 'X')
+		return (ft_put_unsigned_nbr_base(va_arg(param, unsigned long int),
+				"0123456789ABCDEF"));
+	else if (format == '%')
+		return (ft_putchar('%'));
+	return (ft_putchar(format));
 }
 
 int	ft_printf(char const *str, ...)
@@ -56,25 +52,23 @@ int	ft_printf(char const *str, ...)
 		if (*str == '%')
 			numb += ft_filter_format(param, *++str);
 		else
-		{
 			numb += write(1, &str[i], 1);
-		}
 		str++;
 	}
 	va_end(param);
 	return (numb);
 }
 
-
-/*
- int	main(void)
+/* int	main(void)
 {
- 	char	*cad = "Tania";
-	char			l;
-	float			f;
-	int				i;
-	int				d;
-	unsigned int	u;
+	char				*cad = "Tania";
+	char				l;
+	float				f;
+	int					i;
+	int					d;
+	unsigned int		u;
+	unsigned long int	x;
+	unsigned long int	X;
 	int				number_org;
 	int				number_mia;
 
@@ -82,11 +76,13 @@ int	ft_printf(char const *str, ...)
 	f = 3.14;
 	i = -2147483648;
 	d = 45;
-	u = 4294967295;
+	u = 65535;
+	x = 255;
+	X = 255;
 	number_org = 0;
 	number_mia = 0;
-	number_org = printf("Org: %c | %% | %s | %i | %d | %u\n", l, cad, i, d, u);
-	number_mia = ft_printf("Mía: %c | %% | %s | %i | %d | %u\n", l, cad, i, d, u);
+	number_org = printf("1: %c | %s | %p | %d | %i | %u | %lx | %lX | %% \n", l, cad, cad, d, i, u, x, X);
+	number_mia = ft_printf("2: %c | %s | %p | %d | %i | %u | %x | %X | %% \n", l, cad, cad, d, i, u, x ,X);
 	printf("Función org: %d\nFunción mía: %d\n", number_org, number_mia);
 	printf("PRUEBA - el puntero es: %p | el numero es: %d\n", cad, (int)cad);
 	return (0);
