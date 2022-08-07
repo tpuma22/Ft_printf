@@ -6,7 +6,7 @@
 /*   By: tpuma <tpuma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 19:20:22 by tpuma             #+#    #+#             */
-/*   Updated: 2022/07/31 12:15:11 by tpuma            ###   ########.fr       */
+/*   Updated: 2022/08/07 14:28:24 by tpuma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,25 @@
 
 int	ft_print_number(int number)
 {
-	char		*chain_nb;
+	int	length;
 
-	ft_putnbr_fd(number, 1);
-	chain_nb = ft_itoa(number);
-	return (ft_strlen(chain_nb));
+	length = 0;
+	if (number == -2147483648)
+		return (write(1, "-2147483648", 11));
+	else
+	{
+		if (number < 0)
+		{
+			length += ft_putchar('-');
+			number *= (-1);
+		}
+		if (number > 9)
+		{
+			length += ft_print_number(number / 10);
+			length += ft_putchar(number % 10 + '0');
+		}
+		else
+			length += ft_putchar(number + '0');
+	}
+	return (length);
 }
-
-/* int	main(void)
-{
-	int	a;
-	int	fd;
-
-	a = 2147;
-	fd = 1;
-	ft_putnbr_fd(a, fd);
-	return (0);
-} */

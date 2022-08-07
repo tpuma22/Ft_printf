@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tpuma <tpuma@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/09 21:34:34 by tpuma             #+#    #+#             */
-/*   Updated: 2022/07/31 12:32:06 by tpuma            ###   ########.fr       */
+/*   Created: 2022/08/07 14:30:04 by tpuma             #+#    #+#             */
+/*   Updated: 2022/08/07 14:43:45 by tpuma            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	ft_filter_format(va_list param, char format)
 		return (ft_put_unsigned_nbr_base(va_arg(param, unsigned int),
 				"0123456789"));
 	else if (format == 'x')
-		return (ft_put_unsigned_nbr_base(va_arg(param, unsigned long int),
+		return (ft_put_unsigned_nbr_base(va_arg(param, unsigned int),
 				"0123456789abcdef"));
 	else if (format == 'X')
-		return (ft_put_unsigned_nbr_base(va_arg(param, unsigned long int),
+		return (ft_put_unsigned_nbr_base(va_arg(param, unsigned int),
 				"0123456789ABCDEF"));
 	else if (format == '%')
 		return (ft_putchar('%'));
@@ -58,32 +58,3 @@ int	ft_printf(char const *str, ...)
 	va_end(param);
 	return (numb);
 }
-
-/* int	main(void)
-{
-	char				*cad = "Tania";
-	char				l;
-	float				f;
-	int					i;
-	int					d;
-	unsigned int		u;
-	unsigned long int	x;
-	unsigned long int	X;
-	int				number_org;
-	int				number_mia;
-
-	l = 'z';
-	f = 3.14;
-	i = -2147483648;
-	d = 45;
-	u = 65535;
-	x = 255;
-	X = 255;
-	number_org = 0;
-	number_mia = 0;
-	number_org = printf("1: %c | %s | %p | %d | %i | %u | %lx | %lX | %% \n", l, cad, cad, d, i, u, x, X);
-	number_mia = ft_printf("2: %c | %s | %p | %d | %i | %u | %x | %X | %% \n", l, cad, cad, d, i, u, x ,X);
-	printf("Función org: %d\nFunción mía: %d\n", number_org, number_mia);
-	printf("PRUEBA - el puntero es: %p | el numero es: %d\n", cad, (int)cad);
-	return (0);
-} */
